@@ -1,16 +1,21 @@
 <template>
   <router-link :to="'/movie/' + item.id">
     <div class="movie">
-      <img v-if="item.images" v-lazy="item.images[0]">
-      <p>{{ item.title }}</p>
+      <img v-if="item.images" :src="imgProxy(item.images[0])">
+      <p>{{ item.desc }}</p>
     </div>
   </router-link>
 </template>
 
 <script type="text/ecmascript-6">
+  import { imgProxy } from 'common/js/utils'
+
   export default {
     props: {
       item: Object
+    },
+    methods: {
+      imgProxy
     }
   }
 </script>
@@ -28,10 +33,9 @@
     p {
       display: inline-block;
       width: 400px;
-      margin: 20px;
       padding-left: 20px;
-      vertical-align: middle;
-      font-size: 1.6rem;
+      vertical-align: bottom;
+      font-size: 1.2rem;
       }
     em {
       position: absolute;

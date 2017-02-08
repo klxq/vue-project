@@ -1,46 +1,44 @@
 <template>
   <div class="movielist">
-    <div class="movie" v-if="movieList.stories">
-      <movieitem v-for="movie in movieList.stories" track-by="id" :item="movie"></movieitem>
+    <div class="movie" v-if="movieList.results">
+      <movieitem v-for="movie in movieList.results" :item="movie"></movieitem>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import movieitem from './common/item.vue'
-  import { mapGetters, mapActions } from 'vuex'
+
   export default {
-    components: {
-      movieitem
+    name: 'movieList',
+    mounted () {
+      this.$emit('loadingStart')
+      this.getMovieList()
     },
-    computed: {
-      ...mapGetters(['movieList']),
-      id () {
-        return this.$route.params.id
+    data () {
+      return {
+        loading: false,
+        movieList: []
       }
     },
     methods: {
-      ...mapActions(['getMovieList'])
-    },
-    mounted () {
-      this.$emit('loadingStart')
-      this.getMovieList(this.$route.params.id)
-          .then(() => {
-            this.$emit('loadingDone')
-          })
-    },
-    watch: {
-      id () {
-        this.$emit('loadingStart')
-        this.getMovieList(this.$route.params.id)
-            .then(() => {
-              this.$emit('loadingDone')
-            })
+      getMovieList: function () {
+        this.$http.get('http://gank.io/api/data/Android/10/1')
+        .then(response => {
+          this.movieList = response.body
+        }, response => {
+        })
       }
+    },
+    components: {
+      movieitem
     }
   }
 </script>
 
 <style lang="less" rel="stylesheet/less">
-
+  .movielist {
+    width: 900px;
+    margin: 0 auto;
+  }
 </style>
