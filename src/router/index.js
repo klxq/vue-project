@@ -1,16 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Hello from 'components/Hello'
+import MovieList from 'components/MovieList'
 
 Vue.use(Router)
 
-import Hello from 'components/Hello'
-
 export default new Router({
   routes: [
-    {
-      path: '/',
-      name: 'Hello',
-      component: Hello
-    }
+    {path: '/', component: Hello},
+    {path: '/list', component: MovieList}
   ]
 })
