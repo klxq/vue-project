@@ -2,6 +2,25 @@
 
 > A Vue.js project
 
+## Run API server
+
+If you don't have permission to run start.sh script, you'd better update permission for this shell script first.
+
+API:
+
+  http://localhost:3000/films
+
+  http://localhost:3000/films/:id
+
+
+``` bash
+$ chmod 755 ./start.sh
+```
+
+``` bash
+$ ./start.sh
+```
+
 ## Build Setup
 
 ``` bash
