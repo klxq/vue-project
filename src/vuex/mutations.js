@@ -1,3 +1,3 @@
-export const ADD_MOVIELIST = (state, movie) => {
-  state.movieList = movie
+export const ADD_FILMLIST = (state, film) => {
+  state.filmList = film
 }

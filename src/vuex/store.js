@@ -7,12 +7,12 @@ import plugins from './plugins'
 
 Vue.use(Vuex)
 
-export const STORAGE_MOVIE_KEY = 'movieList'
+export const STORAGE_FILM_KEY = 'filmList'
 
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   state: {
-    movieList: JSON.parse(window.localStorage.getItem(STORAGE_MOVIE_KEY) || '[]')
+    filmList: JSON.parse(window.localStorage.getItem(STORAGE_FILM_KEY) || '[]')
   },
   getters,
   mutations,

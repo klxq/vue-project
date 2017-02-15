@@ -1,9 +1,9 @@
-export const getMovieList = ({ commit }, id) => {
-  API.MovieResource()
+export const getFilmList = ({ commit }, id) => {
+  API.FilmResource()
     .then(res => {
     if (res.statusText === 'OK') {
       let list = res.data
-      commit('ADD_MOVIELIST', list)
+      commit('ADD_FILMLIST', list)
     }
   })
 }

@@ -1,8 +1,8 @@
-import { STORAGE_MOVIE_KEY } from './store'
+import { STORAGE_FILM_KEY } from './store'
 
 const localStoragePlugin = store => {
-  store.subscribe((mutation, { movie }) => {
-    window.localStorage.setItem(STORAGE_MOVIE_KEY, JSON.stringify(movie))
+  store.subscribe((mutation, { film }) => {
+    window.localStorage.setItem(STORAGE_FILM_KEY, JSON.stringify(film))
   })
 }
 

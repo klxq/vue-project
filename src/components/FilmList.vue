@@ -1,43 +1,43 @@
 <template>
-  <div class="movielist">
-    <div class="movie" v-if="movieList.results">
-      <movieitem v-for="movie in movieList.results" :item="movie"></movieitem>
+  <div class="filmlist">
+    <div class="film" v-if="filmList">
+      <filmitem v-for="film in filmList" :item="film"></filmitem>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import movieitem from './common/item.vue'
+  import filmitem from './common/item.vue'
 
   export default {
-    name: 'movieList',
+    name: 'filmList',
     mounted () {
       this.$emit('loadingStart')
-      this.getMovieList()
+      this.getFilmList()
     },
     data () {
       return {
         loading: false,
-        movieList: []
+        filmList: []
       }
     },
     methods: {
-      getMovieList: function () {
-        this.$http.get('http://gank.io/api/data/Android/10/1')
+      getFilmList: function () {
+        this.$http.get('http://localhost:3000/films')
         .then(response => {
-          this.movieList = response.body
+          this.filmList = response.body
         }, response => {
         })
       }
     },
     components: {
-      movieitem
+      filmitem
     }
   }
 </script>
 
 <style lang="less" rel="stylesheet/less">
-  .movielist {
+  .filmlist {
     width: 900px;
     margin: 0 auto;
   }

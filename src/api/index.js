@@ -1,11 +1,11 @@
 var axios = require('axios')
 
-const API_ROOT = "https://api.douban.com/v2/"
+const API_ROOT = "http://localhost:3000/"
 axios.default.withCredentials = true
 
 export default {
-  MovieResource () {
-    return axios.get(API_ROOT.concat("movie/in_theaters"))
+  FilmResource () {
+    return axios.get(API_ROOT.concat("films"))
   }
 }
 
