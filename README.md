@@ -19,6 +19,9 @@ $ chmod 755 ./start.sh
 
 ``` bash
 $ ./start.sh
+
+# npm run dev will load API server automatically
+$ npm run dev
 ```
 
 ## Build Setup
