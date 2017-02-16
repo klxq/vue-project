@@ -1,10 +1,18 @@
 <template>
-  <div class="filmContent">
-    <h1 class="content">
-      <a class="title" v-if="filmContent" :href="filmContent.alt">{{ filmContent.title }}</a>
-    </h1>
-    <div class="post">
-      <img v-if="filmContent.images" :src=imgProxy(filmContent.images.large)>
+  <div v-if="film" class="filmContent">
+    <h1 class="title">{{ film.title }} / {{ film.original_title}} <span class="year">({{ film.year }})</span></h1>
+    <div class="content">
+      <div class="post">
+        <img v-if="film.images" :src=imgProxy(film.images.large)>
+      </div>
+      <div class="description">
+        <ul class="details">
+          <li><span>导演：</span><span v-for="director in film.directors">{{ director.name }}</span></li>
+          <li><span>主演：</span><span v-for="cast in film.casts">{{ cast.name }}/</span></li>
+          <li><span>类型：</span><span v-for="genres in film.genres">{{ genres }}/</span></li>
+          <li><span>评分：</span><span v-if="film.rating" class="rating">{{ film.rating.average }}</span></li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -19,7 +27,7 @@
     },
     data () {
       return {
-        filmContent: Object
+        film: Object
       }
     },
     methods: {
@@ -28,8 +36,7 @@
         let id = this.$route.params.id
         this.$http.get('http://localhost:3000/films/' + id)
         .then(response => {
-          this.filmContent = response.body[0]
-          console.log(this.filmContent)
+          this.film = response.body[0]
         }, response => {
         })
       }
@@ -38,4 +45,25 @@
 </script>
 
 <style lang="less" rel="stylesheet/less">
+ul {
+  list-style: none;
+  line-height: 30px;
+  margin: 0;
+}
+.filmContent {
+  width: 900px;
+  margin: auto;
+  text-align: left;
+  background: white;
+  padding: 10px;
+}
+.title {
+  margin: 10px 0;
+  .year {
+    color: #888;
+  }
+}
+.content {
+  display: flex;
+}
 </style>
