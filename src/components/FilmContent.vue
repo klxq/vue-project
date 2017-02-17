@@ -48,14 +48,10 @@
 ul {
   list-style: none;
   line-height: 30px;
-  margin: 0;
+  margin: 0 30px;
 }
 .filmContent {
-  width: 900px;
-  margin: auto;
   text-align: left;
-  background: white;
-  padding: 10px;
 }
 .title {
   margin: 10px 0;

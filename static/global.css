@@ -3,6 +3,9 @@
   padding: 0;
 }
 
+body {
+  background: #e3ebec;
+}
 #app {
   width: 925px;
   margin: 0 auto;
@@ -12,4 +15,7 @@
   text-align: center;
   color: #2c3e50;
   background: url(/static/bg.jpg) 0 0 cover;
+  padding: 20px;
+  box-shadow: 0 0 2.5em #5d656c;
+  background: white;
 }
