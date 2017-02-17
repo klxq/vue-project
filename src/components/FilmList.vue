@@ -1,8 +1,6 @@
 <template>
-  <div class="filmlist">
-    <div class="film" v-if="filmList">
-      <filmitem v-for="film in filmList" :item="film"></filmitem>
-    </div>
+  <div class="filmlist" v-if="filmList">
+    <filmitem v-for="film in filmList" :item="film"></filmitem>
   </div>
 </template>
 
@@ -38,7 +36,12 @@
 
 <style lang="less" rel="stylesheet/less">
   .filmlist {
-    width: 900px;
-    margin: 0 auto;
+    margin-right: -15px;
+
+    &:after {
+      content: " ";
+      display: block;
+      clear: both;
+    }
   }
 </style>
