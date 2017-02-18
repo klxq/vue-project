@@ -13,6 +13,9 @@
           <li><span>评分：</span><span v-if="film.rating" class="rating">{{ film.rating.average }}</span></li>
         </ul>
       </div>
+      <router-link :to="'/film/' + id + '/edit'">
+        <button>Edit</button>
+      </router-link>
     </div>
   </div>
 </template>
@@ -27,13 +30,15 @@
     },
     data () {
       return {
-        film: Object
+        film: Object,
+        id: 0
       }
     },
     methods: {
       imgProxy,
       getFilmContent: function () {
         let id = this.$route.params.id
+        this.id = id
         this.$http.get('http://localhost:3000/films/' + id)
         .then(response => {
           this.film = response.body[0]
