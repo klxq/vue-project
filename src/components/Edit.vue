@@ -20,7 +20,6 @@
 
 <script type="text/ecmascript-6">
   import API from '../api/index'
-  import multiInput from './common/multiinput'
 
   export default {
     name: 'Edit',
@@ -57,9 +56,6 @@
           }, response => {
           })
       }
-    },
-    components: {
-      multiInput
     }
   }
 </script>
