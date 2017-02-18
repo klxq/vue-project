@@ -3,7 +3,14 @@
       <form id="edit" v-on:submit.prevent="editFilm">
           <div class="form-group"><label>Title: </label><input type="text" v-model="film.title" :value="film.title"></div>
           <div class="form-group"><label>Rating: </label><input type="text" v-model="film.rating.average" v-if="film.rating" :value="film.rating.average"></div>
-          <div class="form-group"><input type="submit" value="submit" class="submit"></div>
+          <div class="form-group">
+              <input type="submit" value="submit" class="submit">
+              <div class="backBtn">
+                  <router-link :to="'/film/' + id">
+                      <button>Back</button>
+                  </router-link>
+              </div>
+          </div>
       </form>
   </div>
 </template>
@@ -33,9 +40,11 @@
       editFilm: function () {
         var $this = this
         let id = this.$route.params.id
-        this.$http.post('http://localhost:3000/films/' + id, this.film, { headers: {
-          'Content-Type': 'multipart/form-data'
-        }})
+        this.$http.post('http://localhost:3000/films/' + id, this.film, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
           .then(response => {
             $this.getFilmContent()
           }, response => {
@@ -74,5 +83,9 @@
     font-weight: bold;
     border: 0;
     font-size: 0.9rem;
+}
+.backBtn {
+    display: inline-block;
+    margin-left: 30px;
 }
 </style>

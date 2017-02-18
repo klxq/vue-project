@@ -6,6 +6,7 @@
 
 <script type="text/ecmascript-6">
   import filmitem from './common/item.vue'
+  import API from '../api/index'
 
   export default {
     name: 'filmList',
@@ -21,10 +22,11 @@
     },
     methods: {
       getFilmList: function () {
-        this.$http.get('http://localhost:3000/films')
+        API.FilmListResource()
         .then(response => {
-          this.filmList = response.body
+          this.filmList = response.data
         }, response => {
+          console.log('Error GET!')
         })
       }
     },
@@ -37,7 +39,6 @@
 <style lang="less" rel="stylesheet/less">
   .filmlist {
     margin-right: -15px;
-
     &:after {
       content: " ";
       display: block;

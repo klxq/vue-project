@@ -1,12 +1,19 @@
 var axios = require('axios')
 
-const API_ROOT = "http://localhost:3000/"
+const API_ROOT = 'http://localhost:3000/films'
 axios.default.withCredentials = true
 
 export default {
-  FilmResource () {
-    return axios.get(API_ROOT.concat("films"))
+  FilmListResource () {
+    return axios.get(API_ROOT)
+  },
+  FilmResource (id) {
+    return axios.get(API_ROOT.concat('/' + id))
+  },
+  EditResource (id) {
+    return axios.post(API_ROOT.concat('/' + id), {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }})
   }
 }
-
-

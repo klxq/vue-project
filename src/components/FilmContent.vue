@@ -13,9 +13,14 @@
           <li><span>评分：</span><span v-if="film.rating" class="rating">{{ film.rating.average }}</span></li>
         </ul>
       </div>
-      <div class="edit">
+      <div class="editBtn">
         <router-link :to="'/film/' + id + '/edit'">
           <button>Edit</button>
+        </router-link>
+      </div>
+      <div class="backBtn">
+        <router-link :to="'/list'">
+          <button>Back</button>
         </router-link>
       </div>
     </div>
@@ -24,6 +29,7 @@
 
 <script type="text/ecmascript-6">
   import { imgProxy } from 'common/js/utils'
+  import API from '../api/index'
 
   export default {
     name: 'filmContent',
@@ -41,9 +47,9 @@
       getFilmContent: function () {
         let id = this.$route.params.id
         this.id = id
-        this.$http.get('http://localhost:3000/films/' + id)
+        API.FilmResource(id)
         .then(response => {
-          this.film = response.body[0]
+          this.film = response.data[0]
         }, response => {
         })
       }
