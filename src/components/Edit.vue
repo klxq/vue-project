@@ -1,8 +1,11 @@
-<template xmlns:v-on="http://www.w3.org/1999/xhtml">
+<template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
   <div class="edit">
       <form id="edit" v-if="film" v-on:submit.prevent="editFilm">
-          <div class="form-group"><label>Title: </label><input type="text" v-model="film.title" :value="film.title"></div>
-          <div class="form-group"><label>Rating: </label><input type="text" v-model="film.rating.average" v-if="film.rating" :value="film.rating.average"></div>
+          <div class="form-group"><label>Title: </label><input type="text" v-model="film.title"></div>
+          <div class="form-group"><label>Directors: </label><input type="text" v-for="director in film.directors" v-model="director.name"></div>
+          <div class="form-group"><label>Casts: </label><input type="text" class="multi" v-for="cast in film.casts" v-model="cast.name"></div>
+          <div class="form-group"><label>Rating: </label><input type="text" class="multi" v-if="film.rating" v-model="film.rating.average"></div>
+          <div class="form-group"><label>Genres: </label><input type="text" class="multi" v-for="(genres, index) in film.genres" v-bind:value="genres" v-on:input="film.genres[index] = $event.target.value"></div>
           <div class="form-group">
               <input type="submit" value="submit" class="submit">
               <div class="backBtn">
@@ -17,6 +20,7 @@
 
 <script type="text/ecmascript-6">
   import API from '../api/index'
+  import multiInput from './common/multiinput'
 
   export default {
     name: 'Edit',
@@ -26,7 +30,8 @@
     data () {
       return {
         film: Object,
-        id: 0
+        id: 0,
+        item: ''
       }
     },
     methods: {
@@ -46,9 +51,15 @@
         API.EditResource(id, this.film)
           .then(response => {
             $this.getFilmContent()
+            if (response.status) {
+              alert('Edit Success!')
+            }
           }, response => {
           })
       }
+    },
+    components: {
+      multiInput
     }
   }
 </script>
@@ -62,15 +73,17 @@
 .form-group {
     margin: 10px 0;
     & > label {
-        width: 60px;
+        width: 100px;
         display: inline-block;
         padding-right: 10px;
     }
     input[type="text"] {
         display: inline-block;
-        height: 1.2rem;
+        height: 1.3rem;
         line-height: 1.8rem;
         padding: 0 0.3rem;
+        margin: 0 0.1rem;
+        font-size: 0.9rem;
     }
 }
 .submit {

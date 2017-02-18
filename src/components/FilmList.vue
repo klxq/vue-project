@@ -5,7 +5,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import filmitem from './common/item.vue'
+  import filmitem from './common/item'
   import API from '../api/index'
 
   export default {
