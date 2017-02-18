@@ -13,9 +13,11 @@
           <li><span>评分：</span><span v-if="film.rating" class="rating">{{ film.rating.average }}</span></li>
         </ul>
       </div>
-      <router-link :to="'/film/' + id + '/edit'">
-        <button>Edit</button>
-      </router-link>
+      <div class="edit">
+        <router-link :to="'/film/' + id + '/edit'">
+          <button>Edit</button>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -66,5 +68,15 @@ ul {
 }
 .content {
   display: flex;
+}
+button {
+  width: 90px;
+  height: 25px;
+  background-color: #268dcd;
+  color: #fff;
+  border-radius: 2px;
+  font-weight: bold;
+  border: 0;
+  font-size: 0.9rem;
 }
 </style>

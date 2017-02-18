@@ -33,7 +33,9 @@
       editFilm: function () {
         var $this = this
         let id = this.$route.params.id
-        this.$http.post('http://localhost:3000/films/' + id, this.film)
+        this.$http.post('http://localhost:3000/films/' + id, this.film, { headers: {
+          'Content-Type': 'multipart/form-data'
+        }})
           .then(response => {
             $this.getFilmContent()
           }, response => {
