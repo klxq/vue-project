@@ -10,7 +10,7 @@ export default {
   FilmResource (id) {
     return axios.get(API_ROOT.concat('/' + id))
   },
-  EditResource (id) {
-    return axios.post(API_ROOT.concat('/' + id))
+  EditResource (id, data) {
+    return axios.post(API_ROOT.concat('/' + id), data)
   }
 }

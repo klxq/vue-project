@@ -1,6 +1,6 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
   <div class="edit">
-      <form id="edit" v-on:submit.prevent="editFilm">
+      <form id="edit" v-if="film" v-on:submit.prevent="editFilm">
           <div class="form-group"><label>Title: </label><input type="text" v-model="film.title" :value="film.title"></div>
           <div class="form-group"><label>Rating: </label><input type="text" v-model="film.rating.average" v-if="film.rating" :value="film.rating.average"></div>
           <div class="form-group">
@@ -40,9 +40,10 @@
           })
       },
       editFilm: function () {
-        var $this = this
         let id = this.$route.params.id
-        API.EditResource(id)
+        this.id = id
+        var $this = this
+        API.EditResource(id, this.film)
           .then(response => {
             $this.getFilmContent()
           }, response => {
