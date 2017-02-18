@@ -11,9 +11,6 @@ export default {
     return axios.get(API_ROOT.concat('/' + id))
   },
   EditResource (id) {
-    return axios.post(API_ROOT.concat('/' + id), {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }})
+    return axios.post(API_ROOT.concat('/' + id))
   }
 }

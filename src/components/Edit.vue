@@ -16,6 +16,8 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import API from '../api/index'
+
   export default {
     name: 'Edit',
     mounted () {
@@ -31,20 +33,16 @@
       getFilmContent: function () {
         let id = this.$route.params.id
         this.id = id
-        this.$http.get('http://localhost:3000/films/' + id)
+        API.FilmResource(id)
           .then(response => {
-            this.film = response.body[0]
+            this.film = response.data[0]
           }, response => {
           })
       },
       editFilm: function () {
         var $this = this
         let id = this.$route.params.id
-        this.$http.post('http://localhost:3000/films/' + id, this.film, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        })
+        API.EditResource(id)
           .then(response => {
             $this.getFilmContent()
           }, response => {
